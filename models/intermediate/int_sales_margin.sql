@@ -28,7 +28,7 @@ SELECT
     ROUND(SUM(revenue),2) AS revenue,
     SUM(quantity) AS quantity,
     ROUND(SUM(purchase_cost),2) AS purchase_cost,
-    ROUND(SUM(revenue - purchase_cost), 2) AS margin
+    ROUND(SUM(revenue - purchase_cost), 2) AS margin,
 FROM clean
 GROUP BY date_date, orders_id
 ORDER BY date_date DESC, orders_id DESC
