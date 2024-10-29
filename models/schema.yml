@@ -33,7 +33,7 @@ sources:
 
       - name: product
         identifier: raw_gz_product
-        description: liste des produits avec prix d'achat Greenweez
+        description: liste des produits avec prix d'achat Greenweez 
         columns:
           - name: products_id
             description: id du produit
