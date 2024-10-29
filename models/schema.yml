@@ -22,6 +22,9 @@ sources:
             description: chiffre d'affaires de la commande
           - name: quantity
             description: quantité vendue
+        tests:
+          - unique:
+              primary_key: "(country_code || '-' || order_id)"
 
       - name: product
         identifier: raw_gz_product
