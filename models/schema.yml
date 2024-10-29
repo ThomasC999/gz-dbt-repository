@@ -33,7 +33,7 @@ sources:
 
       - name: product
         identifier: raw_gz_product
-        description: liste des produits avec prix d'achat Greenweez
+        description: liste des produits avec prix d'achat Greenweez 
         columns:
           - name: products_id
             description: id du produit
@@ -61,6 +61,7 @@ sources:
           - name: ship_cost
             description: coûts de transport
 
+
 models: 
   - name: int_sales_margin
     description : fusion des tables sales et products, calcul marge et coût d'achat, groupée par date, order_id
@@ -81,4 +82,24 @@ models:
   - name: int_order_operationnal
     description: fusion des tables int_sales_margin et ship, calcul de la marge opérationnelle
     columns: 
+      - name: date_date
+        description: date d'achat
+      - name: orders_id
+        description: numéro de commande
+      - name: revenue
+        description: montant de la commande
+      - name: quantity
+        description: nombre de produits dans la commande
+      - name: purchase_cost
+        description: coût d'achat, prix d'achat multiplié par la quantité
+      - name: margin
+        description: marge, chiffre d'affaires - coûts d'achats
+      - name: operationnal_margin,
+        description: marge en intégrant les frais de ports et coûts logistiques
+      - name: shipping_fee,
+        description: frais de transport
+      - name: logcost,
+        description: coûts de logistique
+      - name: ship_cost
+        description: coûts d'expédition
 
