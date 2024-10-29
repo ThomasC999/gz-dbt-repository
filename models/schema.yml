@@ -1,0 +1,16 @@
+# schema.yml
+
+version: 2
+
+sources: 
+  - name: gz_raw_data
+    description: dataset de données brutes Greenweez
+    tables:
+      - name: raw_gz_sales
+        description: liste des ventes Greenweez
+
+      - name: raw_gz_product
+        description: liste des produits avec prix d'achat Greenweez
+
+      - name: raw_gz_ship
+        description: liste des commandes expédiées Greenweez
