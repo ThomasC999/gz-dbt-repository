@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('gz_raw_data', 'raw_gz_sales') }}
+    select * from {{ source('raw', 'sales') }}
 
 ),
 
