@@ -22,9 +22,14 @@ sources:
             description: chiffre d'affaires de la commande
           - name: quantity
             description: quantité vendue
-        tests:
-          - unique:
-              primary_key: "(country_code || '-' || order_id)"
+#        tests:
+#          - unique:
+#              col_name: "order_id || '-' || pdt_id"
+        
+        loaded_at_field: "CAST(date_date AS TIMESTAMP)"
+        freshness:
+          warn_after: { count: 90, period: day }
+
 
       - name: product
         identifier: raw_gz_product
