@@ -2,15 +2,49 @@
 
 version: 2
 
-sources: 
+sources:
   - name: gz_raw_data
     description: dataset de données brutes Greenweez
+
     tables:
       - name: raw_gz_sales
         description: liste des ventes Greenweez
+        columns:
+          - name: date_date
+            description: date d'achat
+          - name: orders_id
+            description: id de la commande 
+          - name: pdt_id
+            description: id du produit
+          - name: revenue
+            description: chiffre d'affaires de la commande
+          - name: quantity
+            description: quantité vendue
 
       - name: raw_gz_product
         description: liste des produits avec prix d'achat Greenweez
+        columns:
+          - name: products_id
+            description: id du produit
+            tests:
+              - unique
+              - not_null
+          - name: purchSE_PRICE
+            description: prix du produit
 
       - name: raw_gz_ship
         description: liste des commandes expédiées Greenweez
+        columns:
+          - name: orders_id
+            description: id de la commande
+            tests:
+              - unique
+              - not_null
+          - name: shipping_fee
+            description: frais de ports
+          - name: shipping_fee_1
+            description: frais de ports doublon
+          - name: logCost
+            description: coûts logistiques
+          - name: ship_cost
+            description: coûts de transport
