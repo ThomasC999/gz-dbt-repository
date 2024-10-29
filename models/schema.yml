@@ -3,11 +3,13 @@
 version: 2
 
 sources:
-  - name: gz_raw_data
+  - name: raw
+    schema: gz_raw_data
     description: dataset de données brutes Greenweez
 
     tables:
-      - name: raw_gz_sales
+      - name: sales
+        identifier: raw_gz_sales
         description: liste des ventes Greenweez
         columns:
           - name: date_date
@@ -21,7 +23,8 @@ sources:
           - name: quantity
             description: quantité vendue
 
-      - name: raw_gz_product
+      - name: product
+        identifier: raw_gz_product
         description: liste des produits avec prix d'achat Greenweez
         columns:
           - name: products_id
@@ -32,7 +35,8 @@ sources:
           - name: purchSE_PRICE
             description: prix du produit
 
-      - name: raw_gz_ship
+      - name: ship
+        identifier: raw_gz_ship 
         description: liste des commandes expédiées Greenweez
         columns:
           - name: orders_id
