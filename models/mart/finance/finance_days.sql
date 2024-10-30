@@ -17,6 +17,7 @@ SELECT
     nb_transactions,
     ROUND(SAFE_DIVIDE(revenue, nb_transactions),2) AS average_basket,
     quantity,
+    revenue,
     purchase_cost,
     margin,
     operationnal_margin,
