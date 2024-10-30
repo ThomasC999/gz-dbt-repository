@@ -22,9 +22,9 @@ sources:
             description: chiffre d'affaires de la commande
           - name: quantity
             description: quantité vendue
-#        tests:
-#          - unique:
-#              col_name: "order_id || '-' || pdt_id"
+        tests:
+          - unique:
+              column_name: "(orders_id || '_' || pdt_id)"
         
         loaded_at_field: "CAST(date_date AS TIMESTAMP)"
         freshness:
