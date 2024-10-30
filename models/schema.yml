@@ -189,13 +189,35 @@ models:
       - name: ship_cost
         description: coûts d'expédition
 
-  - name: int_order_campaigns
-    description: concaténation des 4 sources (ads, bing, criteo, facebook) et aggrégation par date.
+  - name: int_campaign
+    description: concaténation des 4 sources (ads, bing, criteo, facebook)
+    columns:
+      - name: date_date
+        description: date de la camapgne
+      - name: paid_source
+        description: source de la campagne
+      - name: campaign_key
+        description: ID de la campagne
+      - name: campgn_name
+        description: nom de la campagne
+      - name: ads_cost
+        description: coût de la campagne
+      - name: impression
+        description: nombre d'affichage de la campagne
+      - name: clicks
+        description: nombre de clics de la campagne
+    tests:
+      - unique:
+          column_name: "(date_date || '_' || campaign_key)"
+        
+  - name: int_campaigns_day
+    description: aggrégation de int_campaign par date
     columns:
       - name: date_date
         description: date d'affichage de la campagne
         tests:
           - unique
+          - not_null
       - name: ads_costs
         description: coût de la campagne
         tests:
@@ -208,3 +230,38 @@ models:
         description: nombre de clics de la campagne
         tests:
           - not_null
+
+  - name: finance_campaign_date
+    description: table des KPIs pour la finance
+    columns:
+      - name: date_date
+        description: date, clé primaire
+        tests:
+          - unique
+          - not_null
+      - name: ads_margin
+        description: marge après ajout coûts Ads
+      - name: average_basket
+        description: panier moyen
+      - name: operationnal_margin
+        description: marge moins flux logistiques
+      - name: ads_costs
+        description: coûts Ads
+      - name: ads_impressions
+        description: total impressions Ads
+      - name: ads_clicks
+        description: total clics Ads
+      - name: nb_transactions
+        description: nombre de commandes passées
+      - name: quantity
+        description: nombre de produits vendus
+      - name: revenue
+        description: chiffre d'affaires généré
+      - name: purchase_cost
+        description: prix d'achat
+      - name: margin
+        description: marge brute
+      - name: shipping_fee
+        description: frais de ports
+      - name: logcost
+        description: frais logistiques

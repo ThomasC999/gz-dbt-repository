@@ -29,6 +29,7 @@ SELECT
     SUM(quantity) AS quantity,
     ROUND(SUM(purchase_cost),2) AS purchase_cost,
     ROUND(SUM(revenue - purchase_cost), 2) AS margin,
+    {{margin_percent ('revenue', 'purchase_cost') }} AS margin_percent
 FROM clean
 GROUP BY date_date, orders_id
 ORDER BY date_date DESC, orders_id DESC
