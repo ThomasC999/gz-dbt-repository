@@ -25,11 +25,9 @@ sources:
         tests:
           - unique:
               column_name: "(orders_id || '_' || pdt_id)"
-        
         loaded_at_field: "CAST(date_date AS TIMESTAMP)"
         freshness:
           warn_after: { count: 90, period: day }
-
 
       - name: product
         identifier: raw_gz_product
@@ -60,6 +58,94 @@ sources:
             description: coûts logistiques
           - name: ship_cost
             description: coûts de transport
+
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: performances des campagnes ads
+        columns:
+          - name: date_date
+            description: date de la camapgne
+          - name: paid_source
+            description: source de la campagne
+          - name: campaign_key
+            description: ID de la campagne
+          - name: campgn_name
+            description: nom de la campagne
+          - name: ads_cost
+            description: coût de la campagne
+          - name: impression
+            description: nombre d'affichage de la campagne
+          - name: clicks
+            description: nombre de clics de la campagne
+        tests:
+          - unique:
+              column_name: "(date_date || '_' || campaign_key)"
+      
+      - name: bing
+        identifier: raw_gz_bing
+        description: performances des campagnes bing
+        columns:
+          - name: date_date
+            description: date de la camapgne
+          - name: paid_source
+            description: source de la campagne
+          - name: campaign_key
+            description: ID de la campagne
+          - name: campgn_name
+            description: nom de la campagne
+          - name: ads_cost
+            description: coût de la campagne
+          - name: impression
+            description: nombre d'affichage de la campagne
+          - name: clicks
+            description: nombre de clics de la campagne
+        tests:
+          - unique:
+              column_name: "(date_date || '_' || campaign_key)"
+
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: performances des campagnes criteo
+        columns:
+          - name: date_date
+            description: date de la camapgne
+          - name: paid_source
+            description: source de la campagne
+          - name: campaign_key
+            description: ID de la campagne
+          - name: campgn_name
+            description: nom de la campagne
+          - name: ads_cost
+            description: coût de la campagne
+          - name: impression
+            description: nombre d'affichage de la campagne
+          - name: clicks
+            description: nombre de clics de la campagne
+        tests:
+          - unique:
+              column_name: "(date_date || '_' || campaign_key)"
+
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: performances des campagnes facebook
+        columns:
+          - name: date_date
+            description: date de la camapgne
+          - name: paid_source
+            description: source de la campagne
+          - name: campaign_key
+            description: ID de la campagne
+          - name: campgn_name
+            description: nom de la campagne
+          - name: ads_cost
+            description: coût de la campagne
+          - name: impression
+            description: nombre d'affichage de la campagne
+          - name: clicks
+            description: nombre de clics de la campagne
+        tests:
+          - unique:
+              column_name: "(date_date || '_' || campaign_key)"
 
 
 models: 
@@ -103,3 +189,22 @@ models:
       - name: ship_cost
         description: coûts d'expédition
 
+  - name: int_order_campaigns
+    description: concaténation des 4 sources (ads, bing, criteo, facebook) et aggrégation par date.
+    columns:
+      - name: date_date
+        description: date d'affichage de la campagne
+        tests:
+          - unique
+      - name: ads_costs
+        description: coût de la campagne
+        tests:
+          - not_null
+      - name: ads_impressions
+        description: nombre d'affichages de la campagne
+        tests:
+          - not_null
+      - name: ads_clicks
+        description: nombre de clics de la campagne
+        tests:
+          - not_null
